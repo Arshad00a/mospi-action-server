@@ -1,0 +1,1 @@
+cd app/actions/ && rasa run actions -p $PORT
