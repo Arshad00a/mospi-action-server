@@ -35,7 +35,7 @@ class ActionHelloWorld(Action):
             message = {"payload": "Links", "data": "https://www.mospi.gov.in/di-labs-ni"}
         if (value=="National Data Bank"):
             message = {"payload": "Links", "data": "https://www.mospi.gov.in/national-data-bank"}
-        if (value=="NPIQSI"):
+        if (value=="NPIQSI Project5"):
             message = {"payload": "Links", "data": "https://www.mospi.gov.in/npiqsi"}
         dispatcher.utter_message(json_message=message)
         return []
@@ -82,15 +82,49 @@ class GIF(Action):
         message = {"payload": "GIF"}
         dispatcher.utter_message(image="https://media.tenor.com/images/6691ce39e02f80cb5d2c62416a0d36a2/tenor.gif")
         return [UserUtteranceReverted()]
+#
+# class Feedback(Action):
+#
+#     def name(self) -> Text:
+#         return "action_feedback"
+#
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#         message = {"payload": "Feedback"}
+#         dispatcher.utter_message(json_message=message)
+#         return []
 
-class Feedback(Action):
+Departments=["Coordination and Publication (CAP) Division",
+"Data Informatics and Innovation Division (DIID)",
+"Data Quality Assurance Division (DQAD)",
+"Economic Statistics Division (ESD)",
+"National Accounts Division (NAD)",
+"Price Statistics Division (PSD)",
+"Social Statistics Division (SSD)",
+"Training Division",
+"Infrastructure and Project Monitoring Division (IPMD)",
+"Member of Parliament Local Area Development Scheme (MPLADS)",
+"Field Operation Division (FOD)",
+"Survey Coordination Division (SCD)",
+"Survey Design & Research Division (SDRD)",
+"Indian Statistical Institute - Bangalore",
+"Indian Statistical Institute - Chennai'"]
+# import zomatoApi
+# cuisine_id=""
+# restaurants=zomatoApi.searchRestaurants(entity_id,entity_type, cuisine_id,"")
+
+class Card(Action):
 
     def name(self) -> Text:
-        return "action_feedback"
+        return "action_card"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        message = {"payload": "Feedback"}
+        print("running card action server")
+        message = {"payload": "cardsCarousel", "data": Departments}
+        dispatcher.utter_message("Here are the list of Departments")
         dispatcher.utter_message(json_message=message)
+
         return []
